@@ -1,0 +1,17 @@
+﻿<Page x:Class="MasterPol.Pages.SalesHistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="История продаж">
+
+    <Grid>
+        <DataGrid x:Name="SalesHistoryDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Партнёр" Binding="{Binding Partners.Наименование_партнёра}" Width="200"/>
+                <DataGridTextColumn Header="Продукция" Binding="{Binding Products.Наименование_продукции}" Width="200"/>
+                <DataGridTextColumn Header="Тип Продукции" Binding="{Binding Products.Product_type.Тип_продукции}" Width="150"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Количество_продукции}" Width="100"/>
+                <DataGridTextColumn Header="Дата продажи" Binding="{Binding Дата_продажи}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

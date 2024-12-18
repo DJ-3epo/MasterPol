@@ -1,0 +1,58 @@
+﻿<Page x:Class="MasterPol.Pages.Navigation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MasterPol.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Навигация">
+
+    <Grid Background="{StaticResource MainBackgroundBrush}">
+        <!-- Определяем 3 колонки: одну для картинки, две для кнопок -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Картинка по центру -->
+        <Image Source="C:\Users\user\source\repos\MasterPol\MasterPol\res\Мастер пол.png"
+               Grid.Column="1"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Stretch="Uniform"  
+            MaxWidth="300"
+            MaxHeight="300" />
+
+            <!-- Кнопки слева -->
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Content="Просмотр списка партнеров"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="ViewPartnersButton_Click"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+
+                <Button Content="Добавить/Редактировать партнера"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="AddEditPartnerButton_Click"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Кнопки справа -->
+            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Content="История реализации продукции"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="ViewProductHistoryButton_Click"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+
+                <Button Content="Расчет необходимого материала"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="CalculateMaterialButton_Click"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </StackPanel>
+    </Grid>
+</Page>
