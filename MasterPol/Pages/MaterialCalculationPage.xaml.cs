@@ -33,15 +33,13 @@ namespace MasterPol.Pages
         // Обработчик для изменения типа продукции
         private void ProductTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Логика для обработки изменения выбора типа продукции
-            // Например, можно обновить другие элементы интерфейса, если нужно
+            
         }
 
-        // Обработчик для изменения типа материала
+       
         private void MaterialTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Логика для обработки изменения выбора типа материала
-            // Например, можно обновить другие элементы интерфейса, если нужно
+            
         }
 
         // Метод для расчета необходимого материала с учетом брака
