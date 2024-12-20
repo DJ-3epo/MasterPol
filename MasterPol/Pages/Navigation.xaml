@@ -33,11 +33,11 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
 
-                <Button Content="Добавить/Редактировать партнера"
+                <Button Content="Добавить/Редактировать"
                     Style="{StaticResource AccentButtonStyle}"
                     Click="AddEditPartnerButton_Click"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center" Width="252"/>
             </StackPanel>
 
             <!-- Кнопки справа -->

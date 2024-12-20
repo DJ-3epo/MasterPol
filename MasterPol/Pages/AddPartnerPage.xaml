@@ -15,6 +15,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,6 +32,9 @@
         <TextBlock Text="Электронная почта" Grid.Row="2" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Center"/>
         <TextBlock Text="Телефон" Grid.Row="3" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Center"/>
         <TextBlock Text="Тип партнёра" Grid.Row="4" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Center"/>
+        <TextBlock Text="Юридический адрес" Grid.Row="5" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Center"/>
+        <TextBlock Text="ИНН" Grid.Row="6" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Center"/>
+        <TextBlock Text="Рейтинг партнёра" Grid.Row="7" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Center"/>
 
         <!-- Input Fields with Tooltips -->
         <TextBox x:Name="PartnerNameTextBox" 
@@ -57,7 +64,26 @@
                   Grid.Row="4" Grid.Column="1" Margin="0,0,10,5" Width="200" HorizontalAlignment="Left"
                   ToolTip="Выберите тип партнёра"/>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,9.667,380,149" Grid.Column="1">
+        <!-- Юридический адрес -->
+        <TextBox x:Name="AddressTextBox" 
+                 Text="{Binding Юридический_адрес_партнера, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="5" Grid.Column="1" Margin="0,0,10,5" Width="200" HorizontalAlignment="Left"
+                 ToolTip="Введите юридический адрес партнёра"/>
+
+        <!-- ИНН -->
+        <TextBox x:Name="InnTextBox" 
+                 Text="{Binding ИНН, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="6" Grid.Column="1" Margin="0,0,10,5" Width="200" HorizontalAlignment="Left"
+                 ToolTip="Введите ИНН партнёра"
+                 MaxLength="12"/>
+
+        <!-- Рейтинг -->
+        <TextBox x:Name="RatingTextBox" 
+                 Text="{Binding Ренйтинг, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="7" Grid.Column="1" Margin="0,0,10,5" Width="200" HorizontalAlignment="Left"
+                 ToolTip="Введите рейтинг партнёра (от 1 до 10)" MaxLength="2"/>
+
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,9.667,380,149" Grid.Column="1">
             <Button x:Name="ButtonCancel" Content="Отмена" Width="100" Height="30" Margin="0,0,10,0.667" Background="{StaticResource AccentColorBrush}" Click="ButtonCancel_Click"/>
             <Button x:Name="ButtonSave" Content="Сохранить" Width="100" Height="30" Background="{StaticResource AccentColorBrush}" Click="ButtonSave_Click"/>
         </StackPanel>

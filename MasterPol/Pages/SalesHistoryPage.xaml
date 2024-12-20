@@ -4,7 +4,28 @@
       Title="История продаж">
 
     <Grid>
-        <DataGrid x:Name="SalesHistoryDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Добавим ComboBox для выбора партнера -->
+        <ComboBox x:Name="PartnersComboBox"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Width="200"
+                  Margin="10"
+                  SelectionChanged="PartnersComboBox_SelectionChanged"/>
+
+        <DataGrid x:Name="SalesHistoryDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource AdditionalBackgroundBrush}" Margin="10,50,10,10">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <!-- Устанавливаем цвет фона для всех строк -->
+                    <Setter Property="Background" Value="{StaticResource AdditionalBackgroundBrush}" />
+                    <Style.Triggers>
+                        <!-- Меняем фон при наведении -->
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource AccentColorBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Партнёр" Binding="{Binding Partners.Наименование_партнёра}" Width="200"/>
                 <DataGridTextColumn Header="Продукция" Binding="{Binding Products.Наименование_продукции}" Width="200"/>

@@ -81,6 +81,9 @@
     <Compile Include="Pages\EditPartners.xaml.cs">
       <DependentUpon>EditPartners.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MaterialCalculationPage.xaml.cs">
+      <DependentUpon>MaterialCalculationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Navigation.xaml.cs">
       <DependentUpon>Navigation.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EditPartners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MaterialCalculationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

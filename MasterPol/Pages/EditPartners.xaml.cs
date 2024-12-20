@@ -21,9 +21,9 @@ namespace MasterPol.Pages
             {
                 using (var context = new Entities()) // Контекст создается здесь
                 {
-                    // Получаем всех партнёров с типами партнёров (используем Include для загрузки связанных данных)
+                    // Получаем всех партнёров с типами партнёров
                     var partners = context.Partners
-                                          .Include(p => p.Partners_type)  // Включаем навигационное свойство "Partners_type"
+                                          .Include(p => p.Partners_type)  // Включаем тип партнёра
                                           .ToList();
 
                     // Если были уже какие-то элементы, очищаем их
@@ -48,30 +48,7 @@ namespace MasterPol.Pages
             NavigationService.Navigate(new Pages.AddPartnerPage(null)); // Страница для добавления партнера
         }
 
-        // Метод для удаления выбранных партнёров
-        private void ButtonDel_Click(object sender, RoutedEventArgs e)
-        {
-            var partnersForRemoving = DataGridPartner.SelectedItems.Cast<Partners>().ToList();
-
-            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {partnersForRemoving.Count} элементов?", "Внимание",
-                                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    using (var context = new Entities())
-                    {
-                        context.Partners.RemoveRange(partnersForRemoving);
-                        context.SaveChanges();
-                        MessageBox.Show("Данные успешно удалены!");
-                        LoadPartners();  // Загружаем данные снова
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
+       
 
         // Метод для редактирования выбранного партнёра
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
@@ -82,6 +59,59 @@ namespace MasterPol.Pages
             // Открываем страницу редактирования партнёра
             NavigationService.Navigate(new Pages.AddPartnerPage(selectedPartner)); // Страница для редактирования партнера
         }
+
+        private void ButtonDel_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем выбранные партнёрские записи для удаления
+            var partnersForRemoving = DataGridPartner.SelectedItems.Cast<Partners>().ToList();
+
+            // Проверка, что были выбраны партнёры для удаления
+            if (partnersForRemoving.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите хотя бы одного партнёра для удаления.");
+                return;
+            }
+
+            // Подтверждение действия удаления
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {partnersForRemoving.Count} элементов?", "Внимание",
+                                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    using (var context = new Entities()) // Контекст создается здесь
+                    {
+                        // Загружаем партнёров из базы данных и отслеживаем их контекстом
+                        foreach (var partner in partnersForRemoving)
+                        {
+                            // Попытка получить партнёра из базы данных для корректного отслеживания контекстом
+                            var partnerToDelete = context.Partners
+                                                         .FirstOrDefault(p => p.Id == partner.Id);
+
+                            if (partnerToDelete != null)
+                            {
+                                // Удаляем партнёра, который отслеживается контекстом
+                                context.Partners.Remove(partnerToDelete);
+                            }
+                        }
+
+                        // Сохраняем изменения в базе данных
+                        context.SaveChanges();
+
+                        // Загружаем обновленный список партнёров
+                        LoadPartners();
+
+                        // Сообщаем пользователю об успешном удалении
+                        MessageBox.Show("Данные успешно удалены!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Обрабатываем ошибки
+                    MessageBox.Show($"Ошибка при удалении данных: {ex.Message}");
+                }
+            }
+        }
+
 
         // Обработчик для обновления данных при возврате на страницу
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

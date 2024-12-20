@@ -13,7 +13,7 @@
             <ListView Name="PartnersListView" Margin="0,0,0,20" HorizontalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="{StaticResource AccentColorBrush}" BorderThickness="2" CornerRadius="10" Padding="10" Margin="10,0,0,10" HorizontalAlignment="Stretch">
+                        <Border BorderBrush="{StaticResource AccentColorBrush}"  BorderThickness="2" CornerRadius="10" Padding="10" Margin="10,0,0,10" HorizontalAlignment="Stretch" Background="{StaticResource AdditionalBackgroundBrush}">
                             <Grid>
                                 <!-- Определяем строки и колонки -->
                                 <Grid.RowDefinitions>
@@ -48,15 +48,17 @@
                                 <TextBlock Text="{Binding Директор}" FontSize="16" FontFamily="{StaticResource PrimaryFont}" Margin="0,5" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                                 <!-- Телефон -->
-                                <TextBlock Text="{Binding Телефон_партнёра}" FontSize="16" FontFamily="{StaticResource PrimaryFont}" Margin="0,5" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
+                                <TextBlock FontSize="16" FontFamily="{StaticResource PrimaryFont}" Margin="0,5" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                     <Run Text="+7 " />
+                                     <Run Text="{Binding Телефон_партнёра}" />
+                                </TextBlock>
                                 <!-- Скидка справа по центру -->
                                 <TextBlock Text="{Binding Скидка}" FontSize="16" FontFamily="{StaticResource PrimaryFont}" Margin="0,5" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                                 <!-- Рейтинг -->
                                 <TextBlock FontSize="16" FontFamily="{StaticResource PrimaryFont}" Margin="0,5" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-    <Run Text="Рейтинг: " />
-    <Run Text="{Binding Ренйтинг}" />
+                                     <Run Text="Рейтинг: " />
+                                     <Run Text="{Binding Ренйтинг}" />
                                 </TextBlock>
                             </Grid>
                         </Border>
